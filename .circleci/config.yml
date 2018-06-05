@@ -18,6 +18,19 @@ jobs:
           name: Tests
           command: |
             npm test
+
+  deploy:
+    docker:
+      - image: circleci/node:8.11-jessie
+        environment:
+          BRANCH: $CIRCLE_BRANCH
+    working_directory: ~/app
+    branches:
+      only:
+        - master
+        - develop
+    steps:
+      - checkout
       - run:
           name: Install cf
           command: |
@@ -31,7 +44,6 @@ jobs:
             cf login -a https://api.fr.cloud.gov -u ${CF_USER} -p ${CF_PASS} -o ${CF_ORG} -s ${CF_SPACE}
       - deploy:
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              cf push  cf-example-${CIRCLE_BRANCH}
-            fi
+            export PATH=$HOME/bin:$PATH
+            cf push  cf-example-${CIRCLE_BRANCH}
 
