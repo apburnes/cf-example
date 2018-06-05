@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11-jessie
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo npm install -g npm
+            npm install
+      - run:
+          name: Tests
+          command: |
+            npm test
