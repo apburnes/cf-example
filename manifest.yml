@@ -1,0 +1,5 @@
+---
+buildpack: nodejs_buildpack
+applications:
+- name: cf-example
+  memory: 256M

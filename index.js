@@ -3,6 +3,6 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => res.send(`Hello ${process.env.ENVIRONMENT}!`));
+app.get('/', (req, res) => res.send(`Hello ${process.env.BRANCH}!`));
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(8080, () => console.log('Example app listening on port 8080!'));
