@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.11-jessie
+        environment:
+          ENVIRONMENT: $CIRCLE_BRANCH
     working_directory: ~/app
     steps:
       - checkout

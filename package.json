@@ -1,7 +1,7 @@
 {
   "name": "cf-example",
   "version": "0.0.1",
-  "description": "Example repo",
+  "description": "Simple example repo",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
