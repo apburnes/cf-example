@@ -26,7 +26,9 @@ jobs:
             curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.34.0" | tar xzv -C $HOME/bin
       - run:
           name: Login to cloud.gov Staging
-          command: cf login -a https://api.fr.cloud.gov -u ${CF_USER} -p ${CF_PASS} -o ${CF_ORG} -s ${CF_SPACE}
+          command: |
+            export PATH=$HOME/bin:$PATH
+            cf login -a https://api.fr.cloud.gov -u ${CF_USER} -p ${CF_PASS} -o ${CF_ORG} -s ${CF_SPACE}
       - deploy:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
