@@ -18,19 +18,6 @@ jobs:
           name: Tests
           command: |
             npm test
-
-  deploy:
-    docker:
-      - image: circleci/node:8.11-jessie
-        environment:
-          BRANCH: $CIRCLE_BRANCH
-    working_directory: ~/app
-    branches:
-      only:
-        - master
-        - develop
-    steps:
-      - checkout
       - run:
           name: Install cf
           command: |
@@ -45,5 +32,7 @@ jobs:
       - deploy:
           command: |
             export PATH=$HOME/bin:$PATH
-            cf push  cf-example-${CIRCLE_BRANCH}
+            if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              cf push  cf-example-${CIRCLE_BRANCH}
+            fi
 
