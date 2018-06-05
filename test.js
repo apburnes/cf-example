@@ -6,7 +6,7 @@ const expect = chai.expect;
 describe('Example', function() {
   describe('Tests Set One', function() {
     it('should be true', function() {
-      expect(true).to.be.true;
+      expect(false).to.be.true;
     });
 
     it('should be string', function() {
